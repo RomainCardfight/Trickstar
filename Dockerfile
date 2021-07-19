@@ -1,4 +1,4 @@
-FROM python:latest
+FROM python:3.9.6-slim-buster
 
 RUN apt-get -y update && \
     apt-get -y install libffi-dev libnacl-dev libpython3-dev && \
@@ -6,5 +6,3 @@ RUN apt-get -y update && \
     pip3 install python-twitter
 
 WORKDIR /app
-
-COPY . .

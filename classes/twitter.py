@@ -9,19 +9,30 @@ class Twitter:
                         consumer_key=consumer_key,
                         consumer_secret=consumer_secret,
                         access_token_key=access_token_key,
-                        access_token_secret=access_token_secret
-                    )
+                        access_token_secret=access_token_secret)
+
         self.json_data = JsonData("json/twitter.json")
 
-    def get_tweet_urls(self, term):
-        statuses = self.api.GetSearch(term=term, count=100)
-        urls = []
-        for s in statuses:
-            urls.append(f"https://twitter.com/{s.user.screen_name}/status/{s.id_str}")
-        return urls
+    def get_tweet_urls(self, request, command=''):
+        if not request:
+            return []
 
-    def get_tweets(self, terms, command=''):
+        statuses = []
+        terms = self.json_data.json_obj[request]
+        for term in terms.keys():
+            results = self.api.GetSearch(term=f"{term} {command}", since_id=terms[term], count=100)
+            if results:
+                self.json_data.update_data(request, term, results[0].id)
+                statuses += results
+        
+        self.json_data.update_file()
+        
+        if not statuses:
+            return []
+        
+        statuses.sort(key=lambda x:x.id)
         urls = []
-        for term in terms:
-            urls += self.get_tweet_urls(term + command)
+        for status in statuses:
+            urls.append((status.user.screen_name, f"https://twitter.com/{status.user.screen_name}/status/{status.id_str}"))
+
         return urls
