@@ -14,7 +14,7 @@ class Tweets(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-        @aiocron.crontab("*/1 * * * *")
+        @aiocron.crontab("* */1 * * *")
         async def send_tweets():
             terms = self.bot.twitter.get_json()
             for term in terms.keys():
@@ -31,7 +31,7 @@ class Tweets(commands.Cog):
                     help='Setup a channel to post tweets (Examples: !set_channel deck, !set_channel vg_en !set_channels vg_jp)')
     async def set_channel(self, ctx, section=None):
         if not section:
-            await ctx.send('**Error**: You need to specify an argument (check with ```!help```)')
+            await ctx.send('**Error**: You need to specify an argument (check with !help)')
 
         if section not in self.bot.channels.get_keys():
             await ctx.send('**Error**: Unknown value, you need to specify a valid argument (i.e. deck, vg_en or vg_jp)')
