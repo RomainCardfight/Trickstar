@@ -14,7 +14,7 @@ class Tweets(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-        @aiocron.crontab("* */1 * * *")
+        @aiocron.crontab("0 * * * *")
         async def send_tweets():
             terms = self.bot.twitter.get_json()
             for term in terms.keys():
