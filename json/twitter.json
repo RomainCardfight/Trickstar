@@ -1,14 +1,11 @@
 {
     "deck": {
-        "#\u30f4\u30a1\u30f3\u30ac\u30fc\u30c9 \u512a\u52dd": 1417497841979768832,
-        "#VGTopDecks": 1417497841979768832
+        "(-from:tcgtopic_vg) AND (#\u30f4\u30a1\u30f3\u30ac\u30fc\u30c9 \u512a\u52dd) OR (#VGTopDecks) OR (#\u30f4\u30a1\u30f3\u30ac\u30fc\u30c9\u512a\u52dd)": 1507857992804306948
     },
     "vg_en": {
-        "(from:cfvanguard_en)": 1417467754005684225,
-        "(from:vanguardzero_EN)": 1417061943903457280
+        "(from:cfvanguard_en) OR (from:vanguardzero_EN)": 1507854977544376333
     },
     "vg_jp": {
-        "(from:cfvanguard_PR)": 1417469439495135232,
-        "(from:vanguard_zero_)": 1417459051059765250
+        "(from:cfvanguard_PR) OR (from:vanguard_zero_)": 1507689333662179330
     }
 }

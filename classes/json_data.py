@@ -24,6 +24,9 @@ class JsonData:
     def update_data(self, key1, key2, value):
         self.json_obj[key1][key2] = value
 
+    def remove_data(self, key1, key2):
+        self.json_obj[key1].pop(key2)
+
     def update_file(self):
         json_file = open(self.json_filename, "w")
         json.dump(self.json_obj, json_file, indent=4)
